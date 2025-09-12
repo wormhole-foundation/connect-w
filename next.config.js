@@ -23,6 +23,8 @@ const nextConfig = {
             assert: false,
             os: false,
             path: false,
+            // Add encoding fallback to prevent warnings
+            encoding: require.resolve('encoding'),
         };
 
         // Handle ESM modules better
@@ -33,6 +35,12 @@ const nextConfig = {
                 fullySpecified: false,
             },
         });
+
+        // Ignore specific warnings about missing optional dependencies
+        config.ignoreWarnings = [
+            /Critical dependency: the request of a dependency is an expression/,
+            /Module not found: Error: Can't resolve 'encoding'/,
+        ];
 
         // Simple solution: exclude Wormhole packages from server-side bundling
         if (isServer) {
