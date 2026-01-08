@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
-test('has title and Wormhole NTT UI text', async ({ page }) => {
-    // Go to the homepage
-    await page.goto('/');
+test('has title and Wormhole NTT UI text', async ({ page, authenticate }) => {
+    // Authenticate first
+    await authenticate();
 
     // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/Wormhole|Connect|NTT/);
@@ -14,8 +14,9 @@ test('has title and Wormhole NTT UI text', async ({ page }) => {
     });
 });
 
-test('loads wormhole connect component', async ({ page }) => {
-    await page.goto('/');
+test('loads wormhole connect component', async ({ page, authenticate }) => {
+    // Authenticate first
+    await authenticate();
 
     // Wait for the dynamic component to load
     // Look for common Wormhole Connect elements that should appear

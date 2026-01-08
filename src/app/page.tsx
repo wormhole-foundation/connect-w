@@ -12,6 +12,7 @@ import {
 // Import generated configuration (created at build time by generate-config.ts)
 import generatedConfig from '@/generated/wormhole-config.json';
 import { clientConfig } from '@/lib/config';
+import { wormholeTheme } from '@/lib/theme';
 
 // Type the NTT config from generated JSON
 const nttConfig: NttRoute.Config =
@@ -57,16 +58,56 @@ export default function Home() {
         <div
             style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 minHeight: '100vh',
                 padding: '20px',
+                background: wormholeTheme.gradients.background,
+                position: 'relative',
             }}
         >
-            <div style={{ width: '100%', maxWidth: '480px' }}>
+            {/* Gradient orbs for visual interest */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '-20%',
+                    left: '-10%',
+                    width: '50%',
+                    height: '50%',
+                    background: `radial-gradient(circle, ${wormholeTheme.colors.primary}10 0%, transparent 70%)`,
+                    filter: 'blur(80px)',
+                    pointerEvents: 'none',
+                }}
+            />
+            <div
+                style={{
+                    position: 'absolute',
+                    bottom: '-20%',
+                    right: '-10%',
+                    width: '50%',
+                    height: '50%',
+                    background: `radial-gradient(circle, ${wormholeTheme.colors.accent}10 0%, transparent 70%)`,
+                    filter: 'blur(80px)',
+                    pointerEvents: 'none',
+                }}
+            />
+
+            {/* Main content */}
+            <div
+                style={{
+                    width: '100%',
+                    maxWidth: '480px',
+                    position: 'relative',
+                    zIndex: 1,
+                }}
+            >
                 <WormholeConnect
                     config={wormholeConfig}
-                    theme={{ mode: 'dark', primary: '#78c4b6' }}
+                    theme={{
+                        mode: 'dark',
+                        primary: wormholeTheme.colors.primary,
+                    }}
                 />
             </div>
         </div>

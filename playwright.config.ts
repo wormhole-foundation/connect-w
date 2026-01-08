@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// Test password - only used during E2E tests
+const TEST_PASSWORD = 'e2e-test-password';
+
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -64,9 +67,9 @@ export default defineConfig({
 
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'npm run dev',
+        command: `cross-env TEST_PASSWORD=${TEST_PASSWORD} npm run dev`,
         url: 'http://localhost:3000',
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false, // Always start fresh to ensure TEST_PASSWORD is set
         timeout: 120 * 1000,
     },
 });

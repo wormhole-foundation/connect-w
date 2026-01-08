@@ -1,0 +1,19 @@
+<svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wormhole Logo Mark -->
+  <circle cx="16" cy="16" r="14" stroke="url(#wormhole-gradient)" stroke-width="2" fill="none"/>
+  <circle cx="16" cy="16" r="8" fill="url(#wormhole-gradient)"/>
+  <ellipse cx="16" cy="16" rx="14" ry="6" stroke="url(#wormhole-gradient)" stroke-width="1.5" fill="none" opacity="0.6"/>
+  
+  <!-- Wormhole Text -->
+  <text x="38" y="21" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="white">
+    Wormhole
+  </text>
+  
+  <defs>
+    <linearGradient id="wormhole-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C1BBF6"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+</svg>

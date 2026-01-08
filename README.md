@@ -1,44 +1,69 @@
-# Wormhole NTT Connect demo
+# Wormhole NTT Connect
 
-This project sets up a Next.js React TypeScript application and integrates it with the Wormhole Connect SDK.
+A standalone Wormhole Connect implementation with automatic NTT deployment configuration.
 
-## Prerequisites
+## ✨ Features
 
-Ensure you have the following installed on your system:
+-   **Auto-config generation** – Drop `deployment.json` files, get a working bridge
+-   **CoinGecko integration** – Token logos and metadata fetched automatically
+-   **Password protected** – Simple auth via environment variable
+-   **Executor-optimized** – Uses NTT Executor route with manual fallback
 
-- **Node.js** & **TypeScript**
-- **npm**
-
-## Setup
-
-### 1. Clone the Repository
-
-First, clone the repository to your local machine:
-
-```bash
-git clone https://github.com/wormhole-foundation/demo-ntt-connect.git
-cd demo-ntt-connect
-```
-
-### 2. Download Dependencies
-
-Install all required dependencies using npm:
+## 🚀 Quick Start
 
 ```bash
 npm install
-```
-
-### 3. Adjust WormholeConnectConfig
-
-Adjust the `WormholeConnectConfig` in `src/app/page.tsx` based on the `deployment.json` file from your NTT deployment. This configuration is essential to ensure proper integration with your deployment environment.
-
-### 4. Run the App
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-### 5. Important Notes
-   - Use a private RPC for mainnet, to prevent timeouts
+## ⚙️ Configuration
+
+### 1. Add NTT Deployments
+
+Drop your NTT `deployment.json` files into `src/deployments/`:
+
+```
+src/deployments/
+├── RLUSD.json
+└── W-Wormhole.json
+```
+
+Config is auto-generated on build via `npm run generate-config`.
+
+### 2. Set Password (Optional)
+
+```bash
+# .env
+SITE_PASSWORD=your-password
+```
+
+Leave empty to disable password protection.
+
+### 3. Build & Run
+
+```bash
+npm run build
+npm start
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── deployments/     # Drop NTT deployment.json files here
+├── generated/       # Auto-generated Wormhole Connect config
+├── lib/ntt/         # Parser, scanner, CoinGecko integration
+└── app/             # Next.js app with login + bridge pages
+```
+
+## 🧪 Testing
+
+```bash
+npm test          # Playwright E2E tests
+npm run test:unit # Vitest unit tests
+```
+
+## 📝 Notes
+
+-   Use private RPCs for mainnet to prevent timeouts
+-   Executor route requires relayer support on target chains
