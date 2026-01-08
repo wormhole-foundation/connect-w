@@ -5,14 +5,12 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { config } from 'dotenv';
+import 'dotenv/config';
 import {
     scanDeploymentsDirectory,
     generateConfigFromDeployments,
 } from './scanner';
-
-// Load environment variables
-config();
+import { buildConfig } from '../config';
 
 async function main() {
     const projectRoot = path.resolve(__dirname, '../../..');
@@ -32,8 +30,7 @@ async function main() {
 
     console.log(`📦 Found ${deployments.length} deployment(s)`);
 
-    const apiKey = process.env.COINGECKO_API_KEY;
-    if (!apiKey) {
+    if (!buildConfig.coingeckoApiKey) {
         console.warn(
             '⚠️  No COINGECKO_API_KEY found, API calls may be rate limited'
         );
@@ -42,7 +39,7 @@ async function main() {
     console.log('🌐 Fetching token metadata from CoinGecko...');
     const generatedConfig = await generateConfigFromDeployments(
         deployments,
-        apiKey
+        buildConfig.coingeckoApiKey
     );
 
     // Ensure output directory exists

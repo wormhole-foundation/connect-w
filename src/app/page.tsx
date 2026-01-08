@@ -6,6 +6,7 @@ import { nttRoutes } from '@wormhole-foundation/wormhole-connect/ntt';
 
 // Import generated configuration (created at build time by generate-config.ts)
 import generatedConfig from '@/generated/wormhole-config.json';
+import { clientConfig } from '@/lib/config';
 
 // Simple dynamic import - no SSR, clean and elegant
 const WormholeConnect = dynamic(
@@ -23,7 +24,7 @@ const wormholeConfig: config.WormholeConnectConfig = {
             source: { chain: 'Base' },
             destination: { chain: 'Ethereum' },
         },
-        // walletConnectProjectId: '',
+        walletConnectProjectId: clientConfig.walletConnectProjectId,
     },
     // TODO: use a private RPC for mainnet
     // rpcs: {
