@@ -1,0 +1,130 @@
+{
+    "network": "Mainnet",
+    "chains": {
+        "Base": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": false,
+            "owner": "0x395886E76217Ae8Ac89340a51083667582D68722",
+            "manager": "0x2a71afb11F4633A2681EAa19A01C47990f67E938",
+            "token": "0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258",
+            "transceivers": {
+                "threshold": 1,
+                "wormhole": {
+                    "address": "0x7B17Afd3A51ca042cB70A8A334BC4f171fd74089",
+                    "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+                }
+            },
+            "limits": {
+                "outbound": "0.000000000000000000",
+                "inbound": {
+                    "Ethereum": "0.000000000000000000",
+                    "Optimism": "50000000.000000000000000000",
+                    "Unichain": "50000000.000000000000000000",
+                    "Ink": "0.000000000000000000"
+                }
+            },
+            "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+        },
+        "Ethereum": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": false,
+            "owner": "0x395886E76217Ae8Ac89340a51083667582D68722",
+            "manager": "0x2a71afb11F4633A2681EAa19A01C47990f67E938",
+            "token": "0x8292Bb45bf1Ee4d140127049757C2E0fF06317eD",
+            "transceivers": {
+                "threshold": 1,
+                "wormhole": {
+                    "address": "0x7B17Afd3A51ca042cB70A8A334BC4f171fd74089",
+                    "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+                }
+            },
+            "limits": {
+                "outbound": "0.000000000000000000",
+                "inbound": {
+                    "Base": "50000000.000000000000000000",
+                    "Optimism": "50000000.000000000000000000",
+                    "Unichain": "50000000.000000000000000000",
+                    "Ink": "50000000.000000000000000000"
+                }
+            },
+            "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+        },
+        "Ink": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": false,
+            "owner": "0x395886E76217Ae8Ac89340a51083667582D68722",
+            "manager": "0x2a71afb11F4633A2681EAa19A01C47990f67E938",
+            "token": "0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258",
+            "transceivers": {
+                "threshold": 1,
+                "wormhole": {
+                    "address": "0x7B17Afd3A51ca042cB70A8A334BC4f171fd74089",
+                    "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+                }
+            },
+            "limits": {
+                "outbound": "0.000000000000000000",
+                "inbound": {
+                    "Base": "50000000.000000000000000000",
+                    "Ethereum": "0.000000000000000000",
+                    "Optimism": "50000000.000000000000000000",
+                    "Unichain": "50000000.000000000000000000"
+                }
+            },
+            "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+        },
+        "Optimism": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": false,
+            "owner": "0x395886E76217Ae8Ac89340a51083667582D68722",
+            "manager": "0x2a71afb11F4633A2681EAa19A01C47990f67E938",
+            "token": "0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258",
+            "transceivers": {
+                "threshold": 1,
+                "wormhole": {
+                    "address": "0x7B17Afd3A51ca042cB70A8A334BC4f171fd74089",
+                    "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+                }
+            },
+            "limits": {
+                "outbound": "0.000000000000000000",
+                "inbound": {
+                    "Base": "0.000000000000000000",
+                    "Ethereum": "0.000000000000000000",
+                    "Unichain": "0.000000000000000000",
+                    "Ink": "0.000000000000000000"
+                }
+            },
+            "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+        },
+        "Unichain": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": false,
+            "owner": "0x395886E76217Ae8Ac89340a51083667582D68722",
+            "manager": "0x2a71afb11F4633A2681EAa19A01C47990f67E938",
+            "token": "0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258",
+            "transceivers": {
+                "threshold": 1,
+                "wormhole": {
+                    "address": "0x7B17Afd3A51ca042cB70A8A334BC4f171fd74089",
+                    "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+                }
+            },
+            "limits": {
+                "outbound": "0.000000000000000000",
+                "inbound": {
+                    "Base": "0.000000000000000000",
+                    "Ethereum": "0.000000000000000000",
+                    "Optimism": "50000000.000000000000000000",
+                    "Ink": "0.000000000000000000"
+                }
+            },
+            "pauser": "0x395886E76217Ae8Ac89340a51083667582D68722"
+        }
+    }
+}

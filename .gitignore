@@ -32,3 +32,11 @@ dist-ssr
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Generated files (regenerated at build time)
+src/generated/
