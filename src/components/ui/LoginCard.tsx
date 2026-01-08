@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { wormholeTheme } from '@/lib/theme';
 
@@ -31,12 +30,12 @@ export function LoginCard({ children }: LoginCardProps) {
                             mb: 3,
                         }}
                     >
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src="/wormhole-logomark.svg"
                             alt="Wormhole"
                             width={72}
                             height={72}
-                            priority
                         />
                     </Box>
                     <Typography
