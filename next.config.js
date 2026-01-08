@@ -1,53 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
-    swcMinify: false, // Disable SWC minification to avoid syntax errors
     // Disable source maps in development to reduce console noise
     productionBrowserSourceMaps: false,
-    experimental: {
-        esmExternals: 'loose',
-    },
-    webpack: (config, { isServer }) => {
-        // Essential fallbacks for Wormhole Connect
-        config.resolve.fallback = {
-            ...config.resolve.fallback,
-            fs: false,
-            net: false,
-            tls: false,
-            crypto: false,
-            stream: false,
-            url: false,
-            zlib: false,
-            http: false,
-            https: false,
-            assert: false,
-            os: false,
-            path: false,
-            // Add encoding fallback to prevent warnings
-            encoding: require.resolve('encoding'),
-        };
-
-        // Handle ESM modules better
-        config.module.rules.push({
-            test: /\.m?js$/,
-            type: 'javascript/auto',
-            resolve: {
-                fullySpecified: false,
-            },
-        });
-
-        // Ignore specific warnings about missing optional dependencies
-        config.ignoreWarnings = [
-            /Critical dependency: the request of a dependency is an expression/,
-            /Module not found: Error: Can't resolve 'encoding'/,
-        ];
-
-        // Simple solution: exclude Wormhole packages from server-side bundling
-        if (isServer) {
-            config.externals.push('@wormhole-foundation/wormhole-connect');
-        }
-
-        return config;
+    // Turbopack config (default in Next.js 16)
+    turbopack: {
+        root: __dirname,
     },
     // Transpile Wormhole packages
     transpilePackages: [
