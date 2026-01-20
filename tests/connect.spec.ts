@@ -1,6 +1,9 @@
 import { test, expect } from './fixtures';
 
-test('has title and Wormhole NTT UI text', async ({ page, authenticate }) => {
+test('has title and Wormhole NTT UI - Mainnet text', async ({
+    page,
+    authenticate,
+}) => {
     // Authenticate first
     await authenticate();
 
@@ -9,7 +12,7 @@ test('has title and Wormhole NTT UI text', async ({ page, authenticate }) => {
 
     // Wait for the page to load and check for the Wormhole NTT UI text
     // Since the component is dynamically loaded, we need to wait for it
-    await expect(page.getByText('Wormhole NTT UI')).toBeVisible({
+    await expect(page.getByText('Wormhole NTT UI - Mainnet')).toBeVisible({
         timeout: 30000,
     });
 });
