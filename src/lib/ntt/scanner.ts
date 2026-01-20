@@ -58,7 +58,7 @@ export function parseDeploymentFilename(filename: string): {
  * Scan deployments directory and load all JSON files
  */
 export function scanDeploymentsDirectory(
-    deploymentsDir: string
+    deploymentsDir: string,
 ): ScannedDeployment[] {
     const deployments: ScannedDeployment[] = [];
 
@@ -104,7 +104,7 @@ export function scanDeploymentsDirectory(
  * Parse a single deployment config into NTT chain configs
  */
 export function parseDeploymentToNttConfig(
-    config: DeploymentConfig
+    config: DeploymentConfig,
 ): NttChainConfig[] {
     const nttConfigs: NttChainConfig[] = [];
 
@@ -139,7 +139,7 @@ export function buildTokensConfigForToken(
     symbol: string,
     nttConfigs: NttChainConfig[],
     icon: string,
-    decimals: Record<string, number>
+    decimals: Record<string, number>,
 ): TokensConfig {
     const tokensConfig: TokensConfig = {};
 
@@ -166,17 +166,31 @@ export function buildTokensConfigForToken(
  */
 export async function generateConfigFromDeployments(
     deployments: ScannedDeployment[],
-    apiKey?: string
+    apiKey?: string,
+    network: 'Mainnet' | 'Testnet' = 'Mainnet',
 ): Promise<GeneratedConfig> {
     const allChains = new Set<string>();
     const allTokens: string[] = [];
     const nttTokens: Record<string, NttChainConfig[]> = {};
     const tokensConfig: TokensConfig = {};
-    let network = 'Mainnet';
 
-    for (const { symbol, tokenName, config } of deployments) {
-        network = config.network;
+    // Filter deployments by network
+    const filteredDeployments = deployments.filter(
+        (d) => d.config.network === network,
+    );
 
+    if (filteredDeployments.length === 0) {
+        console.warn(`No ${network} deployments found`);
+        return {
+            network,
+            chains: [],
+            tokens: [],
+            nttRoutesConfig: { tokens: {} },
+            tokensConfig: {},
+        };
+    }
+
+    for (const { symbol, tokenName, config } of filteredDeployments) {
         // Get chains for this deployment
         const chains = Object.keys(config.chains);
         chains.forEach((chain) => allChains.add(chain));
@@ -189,12 +203,12 @@ export async function generateConfigFromDeployments(
         // Use tokenName for search if provided, otherwise use symbol
         const searchTerm = tokenName || symbol;
         console.log(
-            `Fetching metadata for ${symbol} (searching: ${searchTerm})...`
+            `Fetching metadata for ${symbol} (searching: ${searchTerm})...`,
         );
         const metadata = await fetchTokenMetadataBySymbol(
             searchTerm,
             chains,
-            apiKey
+            apiKey,
         );
 
         // Build tokens config
@@ -202,7 +216,7 @@ export async function generateConfigFromDeployments(
             symbol,
             nttConfig,
             metadata.icon,
-            metadata.decimals
+            metadata.decimals,
         );
         Object.assign(tokensConfig, tokenConfig);
     }
@@ -220,7 +234,7 @@ export async function generateConfigFromDeployments(
  * Extract all unique chains from deployment configs
  */
 export function extractChainsFromDeployments(
-    deployments: ScannedDeployment[]
+    deployments: ScannedDeployment[],
 ): string[] {
     const chains = new Set<string>();
 

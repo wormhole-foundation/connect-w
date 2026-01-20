@@ -9,31 +9,22 @@ import {
     type NttExecutorRoute,
 } from '@wormhole-foundation/wormhole-connect/ntt';
 
-// Import generated configuration (created at build time by generate-config.ts)
-import generatedConfig from '@/generated/wormhole-config.json';
+import generatedConfig from '@/generated/wormhole-config-testnet.json';
 import { clientConfig } from '@/lib/config';
 import { wormholeTheme } from '@/lib/theme';
 
-// Type the NTT config from generated JSON
 const nttConfig: NttRoute.Config =
     generatedConfig.nttRoutesConfig as NttRoute.Config;
 const tokensConfig: config.TokensConfig =
     generatedConfig.tokensConfig as config.TokensConfig;
 
-// Simple dynamic import - no SSR, clean and elegant
 const WormholeConnect = dynamic(
     () => import('@wormhole-foundation/wormhole-connect'),
     { ssr: false },
 );
 
-// Build routes using the type expected by WormholeConnectConfig
-// Note: Type assertion via unknown required due to SDK internal version mismatch between
-// wormhole-connect's bundled SDK and the NTT package's SDK types. The types are structurally
-// identical at runtime but TypeScript sees them as different due to separate npm package instances.
 const nttRoutes = [
-    // NTT Executor route (automatic/relayed) - primary option
     nttExecutorRoute({ ntt: nttConfig } satisfies NttExecutorRoute.Config),
-    // NTT Manual route - fallback option
     nttManualRoute(nttConfig),
 ] as unknown as config.WormholeConnectConfig['routes'];
 
@@ -42,10 +33,10 @@ const wormholeConfig: config.WormholeConnectConfig = {
     chains: generatedConfig.chains as config.WormholeConnectConfig['chains'],
     tokens: generatedConfig.tokens,
     ui: {
-        title: 'Wormhole NTT UI - Mainnet',
+        title: 'Wormhole NTT UI - Testnet',
         defaultInputs: {
-            source: { chain: 'Base' },
-            destination: { chain: 'Ethereum' },
+            source: { chain: 'Sepolia' },
+            destination: { chain: 'Linea' },
         },
         walletConnectProjectId: clientConfig.walletConnectProjectId,
     },
@@ -53,7 +44,7 @@ const wormholeConfig: config.WormholeConnectConfig = {
     tokensConfig,
 };
 
-export default function Home() {
+export default function TestnetPage() {
     return (
         <div
             style={{
@@ -67,7 +58,6 @@ export default function Home() {
                 position: 'relative',
             }}
         >
-            {/* Gradient orbs for visual interest */}
             <div
                 style={{
                     position: 'absolute',
@@ -93,7 +83,6 @@ export default function Home() {
                 }}
             />
 
-            {/* Main content */}
             <div
                 style={{
                     width: '100%',
