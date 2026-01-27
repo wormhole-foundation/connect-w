@@ -22,7 +22,7 @@
         "@mui/material": "^7.3.2",
         "@mui/styled-engine": "^7.3.2",
         "@mui/system": "^7.3.2",
-        "@wormhole-foundation/wormhole-connect": "^5.0.0",
+        "@wormhole-foundation/wormhole-connect": "^5.1.1-beta.0-development",
         "dotenv": "^17.2.3",
         "encoding": "^0.1.13",
         "lucide-react": "^0.554.0",
